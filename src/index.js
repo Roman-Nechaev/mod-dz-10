@@ -1,49 +1,19 @@
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
+var _ = require('lodash');
+import API from './API/fetchCountries';
 
-const searchParams = new URLSearchParams({
-  _limit: 5,
-  _sort: 'name',
-});
+const input = document.querySelector('input');
 
-console.log(searchParams.toString()); // "_limit=5&_sort=name"
+input.addEventListener('input', onImput);
 
-const url = `https://jsonplaceholder.typicode.com/users?${searchParams}`;
-console.log(url); // "https://jsonplaceholder.typicode.com/users?_limit=5&_sort=name"
-
-/* const fetchUsersBtn = document.querySelector('.btn');
-const userList = document.querySelector('.user-list');
-
-fetchUsersBtn.addEventListener('click', onBtnFetchUsers);
-function onBtnFetchUsers(params) {
-  fetchUsers()
-    .then(users => renderUserList(users))
-    .catch(error => console.log(error));
-}
-function fetchUsers() {
-  return fetch(
-    'https://jsonplaceholder.typicode.com/users?_limit=5&_sort=name'
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    console.log(response);
-    return response.json();
-  });
+function onImput(e) {
+  const form = e.currentTarget.value;
+  console.log(form);
+  API.fetchCountries(form);
 }
 
-function renderUserList(users) {
-  const markup = users
-    .map(user => {
-      return `
-          <li>
-            <p><b>Name</b>: ${user.name}</p>
-            <p><b>Email</b>: ${user.email}</p>
-            <p><b>Company</b>: ${user.company.name}</p>
-          </li>
-      `;
-    })
-    .join('');
-  userList.innerHTML = markup;
-} */
+_.debounce(function foo(params) {
+  console.log('re');
+}, 1000);
