@@ -7,10 +7,11 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background-color: #ffffff;
   color: #212121;
   line-height: 1.5;
 }
+
 
 #search-box {
   font: inherit;
@@ -25,6 +26,9 @@ margin: 0;
   top: 15%;
   left: 50%;
   margin-right: -50%;
-  transform: translate(-50%, -50%)
 
-}
+  border-color: rgb(28, 222, 164);
+  transform: translate(-50%, -50%)
+  
+ 
+} 

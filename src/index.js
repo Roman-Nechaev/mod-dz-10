@@ -1,19 +1,40 @@
 import './css/styles.css';
-
-const DEBOUNCE_DELAY = 300;
-var _ = require('lodash');
 import API from './API/fetchCountries';
 
-const input = document.querySelector('input');
+var _ = require('lodash');
 
-input.addEventListener('input', onImput);
+const DEBOUNCE_DELAY = 300;
+
+const elementСontainer = document.querySelector('.country-info');
+const input = document.querySelector('input#search-box');
+
+input.addEventListener('input', _.debounce(onImput, DEBOUNCE_DELAY));
 
 function onImput(e) {
-  const form = e.currentTarget.value;
-  console.log(form);
-  API.fetchCountries(form);
+  console.log('form');
+
+  const form = e.target.value;
+  API.fetchCountries(form)
+    .then(can => renderСountriesList(can))
+    .catch(error => console.log(error));
 }
 
-_.debounce(function foo(params) {
-  console.log('re');
-}, 1000);
+function renderСountriesList(countrys) {
+  const markup = countrys
+    .map(country => {
+      return `
+     <div>
+     <img src=${country.flags.svg}
+      width="100"
+     height="100">
+            <p><b>Country</b>: ${country.name.official}</p>
+            <p><b>Capital</b>: ${country.capital}</p>
+            <p><b>Population</b>: ${country.population}</p>
+            <p><b>Languages</b>: ${country.languages}</p>
+
+          </div>
+    `;
+    })
+    .join('');
+  elementСontainer.innerHTML = markup;
+}
