@@ -1,18 +1,8 @@
-export const oneList = country => {
-  const { population, capital, languages } = country;
-
-  const lang = Object.values(languages);
-
+export const anyList = country => {
   return `
-     <div>
-     <img src=${country.flags.svg}
-      width="100">
-            <span class= 'text-spam'><b> ${country.name.official}</b></span>
-            <p><b>Capital</b>: ${capital} </p>
-            <p><b>Population</b>: ${population}</p>
-             
-            <p><b>Languages</b>: ${lang}</p>
-
-          </div>
+    <div>
+  <p><img src=${country.flags.svg} width="40" align="middle" /><b>
+${country.name.official}<b/></p>
+                 </div>
     `;
 };

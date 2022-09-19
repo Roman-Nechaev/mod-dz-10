@@ -1,60 +1,29 @@
 const elementСontainer = document.querySelector('.country-info');
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { oneList } from '../use/country-list';
-// function renderСountriesList(countrys) {
-
-//   const min = 2;
-//   const max = 10;
-//   if (countrys.length >= max) {
-//     clearInput();
-//     Notify.info('Too many matches found. Please enter a more specific name.');
-//   } else if (countrys.length >= min && countrys.length <= max) {
-//     clearInput();
-//     console.log('от 2 до 10');
-//     const markup = countrys
-//       .map(country => {
-//         return `
-//      <div>
-
-//      <p><img src=${country.flags.svg} width="40" align="middle" /><b>
-// ${country.name.official}<b/></p>
-//                  </div>
-//     `;
-//       })
-//       .join('');
-//     elementСontainer.innerHTML = markup;
-//   } else if (countrys.length == 1) {
-//     console.log('один');
-//     clearInput();
-
-//     //////////////////////////
-//     const markup = countrys
-//       .map(country => {
-//         return `
-//      <div>
-//      <img src=${country.flags.svg}
-//       width="100"
-//      >
-//             <span class= 'text-spam'><b> ${country.name.official}</b></span>
-//             <p><b>Capital</b>: ${country.capital} </p>
-//             <p><b>Population</b>: ${country.population}</p>
-
-//             <p><b>Languages</b>: ${countrys.languages}</p>
-
-//           </div>
-//     `;
-//       })
-//       .join('');
-//     elementСontainer.innerHTML = markup;
-//   }
-
-//   console.log('countrys:', countrys.length);
-// } //! отрисовка поисковых карточек
+import { anyList } from '../use/any-countrys-lists';
 
 function renderСountriesList(countrys) {
-  const marke = countrys.map(country => oneList(country)).join('');
-  console.log(marke);
-  elementСontainer.innerHTML = marke;
+  console.log(countrys.length);
+  const min = 2;
+  const max = 10;
+
+  ////////////? если больше 10 не отображаем
+  if (countrys.length >= max) {
+    clearInput();
+    Notify.info('Too many matches found. Please enter a more specific name.');
+  } ////////////? если больше 10 не отображаем
+  else if (countrys.length >= min && countrys.length <= max) {
+    //////////// !!отрисовка больше одной страницы
+    const markup = countrys.map(country => anyList(country)).join('');
+    //////////// !!отрисовка больше одной страницы
+    elementСontainer.innerHTML = markup;
+  } else if (countrys.length == 1) {
+    //////////// !!отрисовка одной страницы
+    const markup = countrys.map(country => oneList(country)).join('');
+    //////////// !!отрисовка одной страницы
+    elementСontainer.innerHTML = markup;
+  }
 }
 
 function clearInput() {
