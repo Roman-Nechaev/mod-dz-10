@@ -1,6 +1,6 @@
 const elementСontainer = document.querySelector('.country-info');
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { oneList } from '../use/list';
+import { oneList } from '../use/country-list';
 // function renderСountriesList(countrys) {
 
 //   const min = 2;
